@@ -501,17 +501,35 @@ renderer.domElement.addEventListener('pointercancel', (event) => {
   if (touchPoints.size < 2) pinchStartDistance = 0;
 });
 
+function systemMatchesSearch(system: SystemEntry, query: string) {
+  if (!query) return true;
+  return [system.name, system.summary, system.positionSource, system.positionNotes ?? '', ...system.tags, ...system.inhabitants, ...system.bobs.map((bob) => bob.name)].join(' ').toLowerCase().includes(query);
+}
+
+function pinnedVisibleSystemIds() {
+  const pinned = new Set<string>();
+  if (state.selectedId) pinned.add(state.selectedId);
+
+  const selectedSystem = state.selectedId ? systemById.get(state.selectedId) ?? null : null;
+  const selectedBob = selectedSystem?.bobs.find((bob) => bob.id === state.selectedBobId) ?? selectedSystem?.bobs[0] ?? null;
+  const bobLocation = [...movementForBob(selectedBob)].reverse().find((step) => step.year <= state.filters.year) ?? null;
+  if (bobLocation) pinned.add(bobLocation.system.id);
+
+  return pinned;
+}
+
 function filteredSystems(): SystemEntry[] {
   const q = state.filters.search.trim().toLowerCase();
+  const pinnedIds = pinnedVisibleSystemIds();
   return SYSTEMS.filter((system) => system.firstRelevantBook <= state.filters.maxSpoiler)
-    .filter((system) => (eventsForSystem(system).some((event) => event.year <= state.filters.year) || system.id === 'sol'))
-    .filter((system) => (state.filters.faction === 'All' ? true : system.faction === state.filters.faction))
-    .filter((system) => (state.filters.status === 'All' ? true : system.status === state.filters.status))
     .filter((system) => {
-      if (!q) return true;
-      return [system.name, system.summary, system.positionSource, system.positionNotes ?? '', ...system.tags, ...system.inhabitants, ...system.bobs.map((bob) => bob.name)].join(' ').toLowerCase().includes(q);
+      const matchesFacetFilters = (state.filters.faction === 'All' ? true : system.faction === state.filters.faction)
+        && (state.filters.status === 'All' ? true : system.status === state.filters.status)
+        && systemMatchesSearch(system, q);
+      if (!matchesFacetFilters) return false;
+      return eventsForSystem(system).some((event) => event.year <= state.filters.year) || system.id === 'sol' || pinnedIds.has(system.id);
     })
-    .sort((a, b) => a.firstRelevantBook - b.firstRelevantBook || a.name.localeCompare(b.name));
+    .sort((a, b) => Number(pinnedIds.has(b.id)) - Number(pinnedIds.has(a.id)) || a.firstRelevantBook - b.firstRelevantBook || a.name.localeCompare(b.name));
 }
 
 function currentSelection(systems: SystemEntry[]): SystemEntry | null {
@@ -627,7 +645,8 @@ function renderTopTimeline(selection: SystemEntry | null) {
           <div class="timeline-markers">
             ${BOOKS.map((book) => {
               const pct = ((Math.min(MAX_YEAR, Math.max(MIN_YEAR, book.spoilerLevel === 1 ? MIN_YEAR : EVENTS.filter((event) => event.bookIndex <= book.spoilerLevel).at(-1)?.year ?? MAX_YEAR)) - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
-              return `<button class="timeline-marker ${book.spoilerLevel <= state.filters.maxSpoiler ? 'active' : ''}" data-book="${book.spoilerLevel}" style="left:${pct}%" title="${book.label}">${book.shortLabel}</button>`;
+              const markerLabel = compactMobile ? book.shortLabel : book.label;
+              return `<button class="timeline-marker ${book.spoilerLevel <= state.filters.maxSpoiler ? 'active' : ''}" data-book="${book.spoilerLevel}" style="left:${pct}%" title="${book.label}" aria-label="Jump spoiler ceiling to ${book.label}"><span>${markerLabel}</span></button>`;
             }).join('')}
           </div>
           <div class="timeline-year-pin" style="left:${currentYearPct}%"></div>
@@ -852,7 +871,11 @@ function renderDetails(selection: SystemEntry | null) {
 
   rightContent.querySelector<HTMLButtonElement>('#focus-system')?.addEventListener('click', () => focusSystem(selection));
   rightContent.querySelector<HTMLButtonElement>('#jump-current-bob')?.addEventListener('click', () => {
-    if (currentLocation) focusSystem(currentLocation.system);
+    if (!currentLocation) return;
+    state.selectedId = currentLocation.system.id;
+    state.rightOpen = true;
+    focusSystem(currentLocation.system);
+    render();
   });
   rightContent.querySelector<HTMLButtonElement>('#close-right')?.addEventListener('click', () => {
     state.rightOpen = false;
@@ -867,6 +890,7 @@ function renderDetails(selection: SystemEntry | null) {
 }
 
 function focusSystem(system: SystemEntry) {
+  state.selectedId = system.id;
   const desiredYaw = Math.atan2(system.sceneZ, system.sceneX);
   const flatDistance = Math.max(20, Math.hypot(system.sceneX, system.sceneZ));
   yaw = desiredYaw - 0.42;
