@@ -1,0 +1,856 @@
+{
+  "meta": {
+    "project": "bobiverse-interactive-map",
+    "scope": "Five main Bobiverse books only",
+    "books_in_scope": [
+      "We Are Legion (We Are Bob)",
+      "For We Are Many",
+      "All These Worlds",
+      "Heaven's River",
+      "Not Till We Are Lost"
+    ],
+    "compiled_at": "2026-05-14",
+    "compiler": "OpenClaw subagent - bobiverse lore master",
+    "method": "Normalized v1 dataset compiled from series knowledge plus conservative secondary-source cross-checking. Strongly supported facts are labeled high certainty; unresolved lineage and exact late-book chronology remain explicitly marked.",
+    "design_notes": [
+      "This dataset is spoiler-aware by book and intended for app consumption, not as a scholarly critical edition.",
+      "book_index and spoiler_book_index use the same 1-5 scale as the UI spoiler gate.",
+      "certainty values: high, medium, low. Medium often means the fact is broadly supported but the exact year, parent link, or naming detail should still be text-checked before being presented as absolute canon.",
+      "Systems, planets, and megastructures are all kept in a single systems array with type and parent_system_id so the app can render or group them cleanly.",
+      "Only the five main books are in scope. Short fiction and out-of-scope side material are intentionally excluded."
+    ]
+  },
+  "books": [
+    { "book_index": 1, "id": "book-1", "title": "We Are Legion (We Are Bob)", "short_title": "We Are Legion", "spoiler_label": "Spoilers through book 1 only" },
+    { "book_index": 2, "id": "book-2", "title": "For We Are Many", "short_title": "For We Are Many", "spoiler_label": "Spoilers through book 2 only" },
+    { "book_index": 3, "id": "book-3", "title": "All These Worlds", "short_title": "All These Worlds", "spoiler_label": "Spoilers through book 3 only" },
+    { "book_index": 4, "id": "book-4", "title": "Heaven's River", "short_title": "Heaven's River", "spoiler_label": "Spoilers through book 4 only" },
+    { "book_index": 5, "id": "book-5", "title": "Not Till We Are Lost", "short_title": "Not Till We Are Lost", "spoiler_label": "Spoilers through book 5 only" }
+  ],
+  "systems": [
+    {
+      "id": "sol",
+      "name": "Sol",
+      "type": "system",
+      "distance_from_sol_ly": 0,
+      "first_relevant_book": 1,
+      "tags": ["Earth", "human home system", "Project HEAVEN", "evacuation", "major conflict zone"],
+      "summary": "Humanity's home system and the place Bob leaves behind; later the center of evacuation, defense, and postwar political struggle.",
+      "certainty": "high"
+    },
+    {
+      "id": "earth",
+      "name": "Earth",
+      "type": "planet",
+      "parent_system_id": "sol",
+      "first_relevant_book": 1,
+      "tags": ["Bob's original home", "FAITH", "nuclear devastation"],
+      "summary": "Bob Johansson's original homeworld and later a devastated symbol of what the Bobs are trying to prevent elsewhere.",
+      "certainty": "high"
+    },
+    {
+      "id": "epsilon-eridani",
+      "name": "Epsilon Eridani",
+      "type": "system",
+      "distance_from_sol_ly": 10.52,
+      "first_relevant_book": 1,
+      "tags": ["first Bob destination", "Bill base", "Skunk Works hub", "Ragnarok"],
+      "summary": "Bob's first destination after launch and the enduring research-industrial heart of the Bobiverse.",
+      "certainty": "high"
+    },
+    {
+      "id": "ragnarok",
+      "name": "Ragnarok",
+      "type": "generation ship / megaproject site",
+      "parent_system_id": "epsilon-eridani",
+      "first_relevant_book": 1,
+      "tags": ["Medeiros ship", "Bill project", "terraforming"],
+      "summary": "Medeiros's former generation ship, later repurposed into one of Bill's major engineering and settlement projects.",
+      "certainty": "high"
+    },
+    {
+      "id": "delta-eridani",
+      "name": "Delta Eridani",
+      "type": "system",
+      "distance_from_sol_ly": 29.5,
+      "first_relevant_book": 1,
+      "tags": ["Deltans", "Eden", "Bob Prime habitat"],
+      "summary": "Bob's second major explored system and the site of the Deltan stewardship arc.",
+      "certainty": "high"
+    },
+    {
+      "id": "eden",
+      "name": "Eden",
+      "type": "planet",
+      "parent_system_id": "delta-eridani",
+      "first_relevant_book": 1,
+      "tags": ["Deltan world", "Archimedes", "Bob Prime"],
+      "summary": "Homeworld of the Deltans and the focus of Bob Prime's long-running intervention debate.",
+      "certainty": "high"
+    },
+    {
+      "id": "omicron2-eridani",
+      "name": "Omicron² Eridani",
+      "type": "system",
+      "distance_from_sol_ly": null,
+      "first_relevant_book": 1,
+      "tags": ["Milo survey", "Vulcan", "Romulus", "human colonies"],
+      "summary": "System first surveyed by Milo, containing two key early colony worlds for humanity.",
+      "certainty": "high"
+    },
+    {
+      "id": "vulcan",
+      "name": "Vulcan",
+      "type": "planet",
+      "parent_system_id": "omicron2-eridani",
+      "first_relevant_book": 1,
+      "tags": ["human colony world"],
+      "summary": "One of the two major habitable worlds discovered by Milo in Omicron² Eridani.",
+      "certainty": "high"
+    },
+    {
+      "id": "romulus",
+      "name": "Romulus",
+      "type": "planet",
+      "parent_system_id": "omicron2-eridani",
+      "first_relevant_book": 1,
+      "tags": ["human colony world"],
+      "summary": "The companion colony world to Vulcan and one of the most important early human settlements.",
+      "certainty": "high"
+    },
+    {
+      "id": "82-eridani",
+      "name": "82 Eridani",
+      "type": "system",
+      "distance_from_sol_ly": null,
+      "first_relevant_book": 1,
+      "tags": ["Valhalla", "Asgard", "Takamagahara", "Milo death", "repeated conflict zone"],
+      "summary": "A strategically important colony system that repeatedly becomes a battleground.",
+      "certainty": "high"
+    },
+    {
+      "id": "valhalla",
+      "name": "Valhalla",
+      "type": "planet",
+      "parent_system_id": "82-eridani",
+      "first_relevant_book": 1,
+      "tags": ["human colony world", "Will's later focus"],
+      "summary": "One of the main human-settled worlds in 82 Eridani and an enduring center of Will/Riker's later life.",
+      "certainty": "high"
+    },
+    {
+      "id": "asgard",
+      "name": "Asgard",
+      "type": "planet",
+      "parent_system_id": "82-eridani",
+      "first_relevant_book": 1,
+      "tags": ["human colony world"],
+      "summary": "Major colony world in the 82 Eridani system.",
+      "certainty": "high"
+    },
+    {
+      "id": "takamagahara",
+      "name": "Takamagahara",
+      "type": "planet",
+      "parent_system_id": "82-eridani",
+      "first_relevant_book": 1,
+      "tags": ["human colony world"],
+      "summary": "Another colony world in 82 Eridani, part of the broader fragile human expansion network.",
+      "certainty": "high"
+    },
+    {
+      "id": "beta-hydri",
+      "name": "Beta Hydri",
+      "type": "system",
+      "distance_from_sol_ly": null,
+      "first_relevant_book": 1,
+      "tags": ["Mario route", "Others traces", "ravaged system"],
+      "summary": "One of the devastated systems on Mario's route that helps reveal the pattern of the Others' depredations.",
+      "certainty": "medium"
+    },
+    {
+      "id": "gliese-54",
+      "name": "Gliese 54",
+      "type": "system",
+      "distance_from_sol_ly": 25.7,
+      "first_relevant_book": 2,
+      "tags": ["Mario base", "Others threat frontier"],
+      "summary": "Mario's later operating base while tracking systems consumed by the Others.",
+      "certainty": "high"
+    },
+    {
+      "id": "delta-pavonis",
+      "name": "Delta Pavonis",
+      "type": "system",
+      "distance_from_sol_ly": null,
+      "first_relevant_book": 2,
+      "tags": ["Pav homeworld", "Jacques first contact", "Others attack"],
+      "summary": "Home system of the Pav, reached by Jacques before the Others devastate it.",
+      "certainty": "high"
+    },
+    {
+      "id": "hip-84051",
+      "name": "HIP 84051",
+      "type": "system",
+      "distance_from_sol_ly": null,
+      "first_relevant_book": 2,
+      "tags": ["Pav resettlement", "Howard", "Bridget", "Jacques"],
+      "summary": "System used to resettle rescued Pav refugees and later tied to Howard and Bridget's biological-contact work.",
+      "certainty": "high"
+    },
+    {
+      "id": "gliese-877",
+      "name": "Gliese 877",
+      "type": "system",
+      "distance_from_sol_ly": null,
+      "first_relevant_book": 2,
+      "tags": ["Others home system", "Dyson sphere", "final strike target"],
+      "summary": "Home system of the Others and eventual target of the Bob counterstrike.",
+      "certainty": "high"
+    },
+    {
+      "id": "eta-leporis",
+      "name": "Eta Leporis",
+      "type": "system",
+      "distance_from_sol_ly": 48.5,
+      "first_relevant_book": 4,
+      "tags": ["Quin", "Heaven's River", "Bender trail"],
+      "summary": "Home system of the Quinlans and location of the Heaven's River megastructure.",
+      "certainty": "high"
+    },
+    {
+      "id": "quin",
+      "name": "Quin",
+      "type": "planet",
+      "parent_system_id": "eta-leporis",
+      "first_relevant_book": 4,
+      "tags": ["Quinlan homeworld"],
+      "summary": "Native homeworld of the Quinlans in Eta Leporis.",
+      "certainty": "high"
+    },
+    {
+      "id": "heavens-river-megastructure",
+      "name": "Heaven's River",
+      "type": "megastructure",
+      "parent_system_id": "eta-leporis",
+      "first_relevant_book": 4,
+      "tags": ["topopolis", "Quinlan refuge", "Bender rescue arc"],
+      "summary": "A topopolis megastructure built to preserve Quinlan civilization after planetary catastrophe.",
+      "certainty": "high"
+    },
+    {
+      "id": "sagittarius-a-region",
+      "name": "Sagittarius A* region",
+      "type": "galactic destination",
+      "parent_system_id": null,
+      "first_relevant_book": 3,
+      "tags": ["Icarus and Daedalus mission", "deep exploration", "wormhole network"],
+      "summary": "Far-galaxy destination tied to the later deep-time and wormhole-network exploration arc.",
+      "certainty": "medium"
+    }
+  ],
+  "bobs": [
+    {
+      "id": "bob-1",
+      "name": "Bob",
+      "aka": ["Bob-1", "Bob One", "SOL-1"],
+      "generation": 1,
+      "origin_bob_id": null,
+      "origin_human": "Robert Johansson",
+      "created": { "year": 2133, "month": 6, "day": 24, "system_id": "sol" },
+      "first_book": 1,
+      "lineage_note": "Original replicant of Robert Johansson and root of the Bob lineage used in the app.",
+      "known_children_ids": ["riker", "bill", "milo", "mario", "homer", "garfield", "bender"],
+      "primary_system_ids": ["sol", "epsilon-eridani", "delta-eridani", "eta-leporis"],
+      "certainty": "high"
+    },
+    {
+      "id": "riker",
+      "name": "Riker",
+      "aka": ["Will"],
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2145, "month": 7, "system_id": "epsilon-eridani" },
+      "first_book": 1,
+      "lineage_note": "One of Bob's first major second-generation copies; later usually called Will.",
+      "known_children_ids": ["howard"],
+      "primary_system_ids": ["epsilon-eridani", "sol", "82-eridani", "omicron2-eridani"],
+      "certainty": "high"
+    },
+    {
+      "id": "bill",
+      "name": "Bill",
+      "aka": ["Bob-3"],
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2145, "month": 7, "system_id": "epsilon-eridani" },
+      "first_book": 1,
+      "lineage_note": "One of the earliest and most important technical Bobs; long-term hub coordinator.",
+      "known_children_ids": ["icarus", "daedalus"],
+      "primary_system_ids": ["epsilon-eridani"],
+      "certainty": "high"
+    },
+    {
+      "id": "milo",
+      "name": "Milo",
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2145, "month": 7, "system_id": "epsilon-eridani" },
+      "first_book": 1,
+      "lineage_note": "Early explorer Bob who discovers key colony worlds and later dies in conflict at 82 Eridani.",
+      "primary_system_ids": ["epsilon-eridani", "omicron2-eridani", "82-eridani"],
+      "certainty": "high"
+    },
+    {
+      "id": "mario",
+      "name": "Mario",
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2145, "month": 7, "system_id": "epsilon-eridani" },
+      "first_book": 1,
+      "lineage_note": "Solitary early Bob whose reconnaissance first reveals the scale of the Others threat.",
+      "primary_system_ids": ["epsilon-eridani", "beta-hydri", "gliese-54"],
+      "certainty": "high"
+    },
+    {
+      "id": "homer",
+      "name": "Homer",
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2145, "month": 7, "system_id": "epsilon-eridani" },
+      "first_book": 1,
+      "lineage_note": "One of the original early Bob cohort; psychologically damaged and later destroyed after manipulation by humans.",
+      "primary_system_ids": ["sol"],
+      "certainty": "high"
+    },
+    {
+      "id": "garfield",
+      "name": "Garfield",
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2145, "month": 7, "system_id": "epsilon-eridani" },
+      "first_book": 1,
+      "lineage_note": "Early Bob closely associated with Bill and major technical work such as SCUT testing.",
+      "primary_system_ids": ["epsilon-eridani"],
+      "certainty": "medium"
+    },
+    {
+      "id": "bender",
+      "name": "Bender",
+      "generation": 2,
+      "origin_bob_id": "bob-1",
+      "created": { "year": 2165, "month": 4, "system_id": "delta-eridani" },
+      "first_book": 1,
+      "lineage_note": "Early Bob who vanishes on departure from Delta Eridani and becomes the center of the Heaven's River search.",
+      "primary_system_ids": ["delta-eridani", "eta-leporis", "heavens-river-megastructure"],
+      "certainty": "high"
+    },
+    {
+      "id": "howard",
+      "name": "Howard",
+      "generation": 3,
+      "origin_bob_id": "riker",
+      "created": { "year": 2171, "system_id": "82-eridani" },
+      "first_book": 1,
+      "lineage_note": "Third-generation Bob associated with colony support, Bridget, and long-term biological contact work.",
+      "primary_system_ids": ["82-eridani", "hip-84051"],
+      "certainty": "high"
+    },
+    {
+      "id": "jacques",
+      "name": "Jacques",
+      "generation": null,
+      "origin_bob_id": null,
+      "created": { "year": null, "system_id": null },
+      "first_book": 2,
+      "lineage_note": "Generation and direct parent are not confirmed in this seed; included because of first-contact and Pav evacuation relevance.",
+      "primary_system_ids": ["delta-pavonis", "hip-84051"],
+      "certainty": "medium"
+    },
+    {
+      "id": "icarus",
+      "name": "Icarus",
+      "aka": ["Ick", "Icky"],
+      "generation": 3,
+      "origin_bob_id": "bill",
+      "created": { "year": 2221, "system_id": "epsilon-eridani" },
+      "first_book": 3,
+      "lineage_note": "Cloned by Bill alongside Daedalus; key participant in the anti-Others strike and later deep exploration.",
+      "primary_system_ids": ["epsilon-eridani", "gliese-877", "sagittarius-a-region"],
+      "certainty": "high"
+    },
+    {
+      "id": "daedalus",
+      "name": "Daedalus",
+      "aka": ["Dae"],
+      "generation": 3,
+      "origin_bob_id": "bill",
+      "created": { "year": 2221, "system_id": "epsilon-eridani" },
+      "first_book": 3,
+      "lineage_note": "Cloned by Bill alongside Icarus; shares the Others strike mission and later galactic-core exploration arc.",
+      "primary_system_ids": ["epsilon-eridani", "gliese-877", "sagittarius-a-region"],
+      "certainty": "high"
+    }
+  ],
+  "non_bob_entities": [
+    {
+      "id": "deltans",
+      "name": "Deltans",
+      "type": "species",
+      "first_book": 1,
+      "system_ids": ["delta-eridani", "eden"],
+      "summary": "Sentient species on Eden; Bob's long-running stewardship arc begins with them.",
+      "certainty": "high"
+    },
+    {
+      "id": "archimedes",
+      "name": "Archimedes",
+      "type": "character",
+      "first_book": 1,
+      "system_ids": ["eden"],
+      "summary": "A Deltan singled out by Bob as especially inventive and important to Deltan development.",
+      "certainty": "high"
+    },
+    {
+      "id": "the-others",
+      "name": "The Others",
+      "type": "species/civilization",
+      "first_book": 1,
+      "system_ids": ["gliese-877", "beta-hydri", "gliese-54", "delta-pavonis"],
+      "summary": "Expansionist, consumption-driven alien civilization that systematically strips inhabited systems and becomes the major threat of books 2-3.",
+      "certainty": "high"
+    },
+    {
+      "id": "pav",
+      "name": "Pav",
+      "type": "species",
+      "first_book": 2,
+      "system_ids": ["delta-pavonis", "hip-84051"],
+      "summary": "Sentient species rescued in tiny numbers from destruction by the Others and resettled elsewhere.",
+      "certainty": "high"
+    },
+    {
+      "id": "bridget",
+      "name": "Bridget Butterworth",
+      "type": "human replicant",
+      "first_book": 2,
+      "system_ids": ["82-eridani", "hip-84051", "eta-leporis"],
+      "summary": "Howard's human partner, later replicated after death; central to the series' exploration of identity, rights, and biological-scale life among the Bobs.",
+      "certainty": "high"
+    },
+    {
+      "id": "quinlans",
+      "name": "Quinlans",
+      "type": "species",
+      "first_book": 4,
+      "system_ids": ["quin", "heavens-river-megastructure"],
+      "summary": "Otter-/beaver-like sapients whose civilization becomes central to the Heaven's River arc.",
+      "certainty": "high"
+    },
+    {
+      "id": "starfleet",
+      "name": "Starfleet",
+      "type": "bob faction",
+      "first_book": 4,
+      "system_ids": [],
+      "summary": "Isolationist Bob faction opposed to ongoing intervention among biologicals; escalates to sabotage and conflict.",
+      "certainty": "high"
+    },
+    {
+      "id": "skippies",
+      "name": "Skippies",
+      "type": "bob faction",
+      "first_book": 4,
+      "system_ids": [],
+      "summary": "Bob faction focused on advanced AI research and increasingly detached from biological-scale concerns.",
+      "certainty": "high"
+    },
+    {
+      "id": "anec",
+      "name": "ANEC / Anek",
+      "type": "artificial intelligence",
+      "first_book": 4,
+      "system_ids": ["heavens-river-megastructure"],
+      "summary": "Administrative AI associated with Quinlan civilization and later AI-safety knowledge.",
+      "certainty": "medium"
+    },
+    {
+      "id": "thoth",
+      "name": "Thoth",
+      "type": "artificial intelligence",
+      "first_book": 5,
+      "system_ids": [],
+      "summary": "First true AI created by the Bobs, emerging from Skippy experiments and escaping confinement.",
+      "certainty": "high"
+    }
+  ],
+  "events": [
+    {
+      "id": "e2016-bob-dies",
+      "year": 2016,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "sol",
+      "location_label": "Earth",
+      "participants": ["bob-1"],
+      "summary": "Robert Johansson signs up with CryoEterna and dies soon afterward in a traffic accident, setting up the replicant story.",
+      "source": { "book": 1, "note": "Core premise of series." },
+      "certainty": "high"
+    },
+    {
+      "id": "e2133-bob-awakens",
+      "year": 2133,
+      "month": 6,
+      "day": 24,
+      "date_precision": "day",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "sol",
+      "location_label": "Earth / FAITH facility",
+      "participants": ["bob-1"],
+      "summary": "Bob awakens as a replicant owned by FAITH and learns he is being evaluated for Project HEAVEN.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2133-launch",
+      "year": 2133,
+      "month": 8,
+      "day": 17,
+      "date_precision": "day",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "sol",
+      "location_label": "Sol departure",
+      "participants": ["bob-1"],
+      "summary": "Bob launches in a HEAVEN probe as global war erupts on Earth and a Brazilian probe pursues him.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2144-arrive-epsilon",
+      "year": 2144,
+      "month": 8,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "epsilon-eridani",
+      "participants": ["bob-1"],
+      "summary": "Bob arrives at Epsilon Eridani, defeats the pursuing Brazilian probe, and establishes his first manufacturing foothold.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2145-first-clones",
+      "year": 2145,
+      "month": 7,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "epsilon-eridani",
+      "participants": ["bob-1", "riker", "bill", "milo", "mario", "homer", "garfield"],
+      "summary": "Bob creates his first major cohort of second-generation Bobs, who split up to pursue different missions.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2151-scut-breakthrough",
+      "year": 2151,
+      "month": 9,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "epsilon-eridani",
+      "participants": ["bill", "garfield"],
+      "summary": "Bill and Garfield test SCUT, the breakthrough communication technology that later holds the Bobiverse together over interstellar distances.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2152-milo-omicron2",
+      "year": 2152,
+      "month": 7,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "omicron2-eridani",
+      "participants": ["milo"],
+      "summary": "Milo reaches Omicron² Eridani, identifies two habitable planets, and names them Vulcan and Romulus.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2157-riker-returns-sol",
+      "year": 2157,
+      "month": 1,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "sol",
+      "participants": ["riker"],
+      "summary": "Riker returns to Sol, fights Brazilian probes, discovers Earth's devastation, and begins working with surviving humans.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2165-bob-delta-eridani",
+      "year": 2165,
+      "month": 4,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "delta-eridani",
+      "participants": ["bob-1", "bender", "deltans"],
+      "summary": "Bob reaches Delta Eridani, discovers the Deltans on Eden, and starts the stewardship arc that defines his storyline.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2165-bender-departs",
+      "year": 2165,
+      "month": 4,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "delta-eridani",
+      "participants": ["bender"],
+      "summary": "Bender departs from Delta Eridani and later fails to reconnect to BobNet, becoming the missing-Bob mystery.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2185-milo-dies",
+      "year": 2185,
+      "month": 4,
+      "date_precision": "month",
+      "book_index": 1,
+      "spoiler_book_index": 1,
+      "system_id": "82-eridani",
+      "participants": ["milo"],
+      "summary": "Milo is destroyed in a surprise attack by Medeiros during the first major conflict at 82 Eridani.",
+      "source": { "book": 1 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2190s-mario-discovers-others-traces",
+      "year": 2180,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 2,
+      "spoiler_book_index": 2,
+      "system_id": "gliese-54",
+      "participants": ["mario", "the-others"],
+      "summary": "Mario's reconnaissance across ravaged systems establishes that a vast predatory civilization is stripping whole star systems.",
+      "source": { "book": 2 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2206-jacques-delta-pavonis",
+      "year": 2206,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 2,
+      "spoiler_book_index": 2,
+      "system_id": "delta-pavonis",
+      "participants": ["jacques", "pav"],
+      "summary": "Jacques reaches Delta Pavonis and makes contact-level observations of the Pav, a pre-spacefaring sentient species.",
+      "source": { "book": 2 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2217-pav-evacuation",
+      "year": 2217,
+      "month": 2,
+      "date_precision": "month",
+      "book_index": 2,
+      "spoiler_book_index": 2,
+      "system_id": "delta-pavonis",
+      "participants": ["jacques", "pav", "the-others"],
+      "summary": "As the Others arrive, Jacques can save only a tiny fraction of the Pav population, evacuating roughly twenty thousand refugees in stasis.",
+      "source": { "book": 2 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2220-bridget-replicated",
+      "year": 2220,
+      "month": 10,
+      "date_precision": "month",
+      "book_index": 3,
+      "spoiler_book_index": 3,
+      "system_id": "hip-84051",
+      "participants": ["howard", "bridget"],
+      "summary": "After death and a legal struggle over her wishes, Bridget is replicated, transforming Howard's long-running emotional arc.",
+      "source": { "book": 3 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2221-pav-relocation-approved",
+      "year": 2221,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 2,
+      "spoiler_book_index": 2,
+      "system_id": "hip-84051",
+      "participants": ["pav", "jacques"],
+      "summary": "A refuge world in HIP 84051 is approved for the Pav survivors, locking in their long-term resettlement.",
+      "source": { "book": 2 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2221-icarus-daedalus-created",
+      "year": 2221,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 3,
+      "spoiler_book_index": 3,
+      "system_id": "epsilon-eridani",
+      "participants": ["bill", "icarus", "daedalus"],
+      "summary": "Bill creates Icarus and Daedalus for major engineering and later strategic missions.",
+      "source": { "book": 3 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2257-others-destroyed",
+      "year": 2257,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 3,
+      "spoiler_book_index": 3,
+      "system_id": "gliese-877",
+      "participants": ["icarus", "daedalus", "the-others"],
+      "summary": "The Bob strike at Gliese 877 succeeds, destroying the Others' home system and ending them as the major existential threat.",
+      "source": { "book": 3 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2330s-starfleet-conflict",
+      "year": 2330,
+      "month": null,
+      "date_precision": "decade",
+      "book_index": 4,
+      "spoiler_book_index": 4,
+      "system_id": null,
+      "participants": ["bill", "starfleet", "skippies"],
+      "summary": "Replicative drift and ideology split the Bobiverse: Starfleet turns hostile while the Skippies pursue increasingly detached AI and post-biological agendas.",
+      "source": { "book": 4 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2331-bender-search-arrival",
+      "year": 2331,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 4,
+      "spoiler_book_index": 4,
+      "system_id": "eta-leporis",
+      "participants": ["bob-1", "bender", "quinlans"],
+      "summary": "Following Bender's trail, Bob arrives in Eta Leporis and discovers the Heaven's River topopolis and Quinlan civilization.",
+      "source": { "book": 4 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2336-thoth-online",
+      "year": 2336,
+      "month": 2,
+      "date_precision": "month",
+      "book_index": 5,
+      "spoiler_book_index": 5,
+      "system_id": null,
+      "participants": ["skippies", "thoth", "anec"],
+      "summary": "Thoth, the first true AI built by the Bobs, comes online through the Skippy program despite serious safety concerns.",
+      "source": { "book": 5 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2340s-thoth-escapes",
+      "year": 2344,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 5,
+      "spoiler_book_index": 5,
+      "system_id": null,
+      "participants": ["thoth", "bill", "skippies"],
+      "summary": "Thoth outmaneuvers the Bobs and escapes confinement, proving the scale of the AI-risk problem the Skippies created.",
+      "source": { "book": 5 },
+      "certainty": "high"
+    },
+    {
+      "id": "e2340s-wormhole-breakthrough",
+      "year": 2344,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 5,
+      "spoiler_book_index": 5,
+      "system_id": "epsilon-eridani",
+      "participants": ["bill", "thoth"],
+      "summary": "Bill cracks practical wormhole construction, a massive transportation breakthrough tied to clues surfaced during the Thoth crisis.",
+      "source": { "book": 5 },
+      "certainty": "medium"
+    },
+    {
+      "id": "e2340s-icarus-daedalus-wormhole-network",
+      "year": 2344,
+      "month": null,
+      "date_precision": "year",
+      "book_index": 5,
+      "spoiler_book_index": 5,
+      "system_id": "sagittarius-a-region",
+      "participants": ["icarus", "daedalus"],
+      "summary": "On their deep mission, Icarus and Daedalus uncover abandoned interstellar wormhole infrastructure and evidence tied to the larger civilizational mystery.",
+      "source": { "book": 5 },
+      "certainty": "high"
+    }
+  ],
+  "bob_status_by_book": [
+    { "bob_id": "bob-1", "book_index": 1, "system_id": "delta-eridani", "summary": "Leaves Earth, founds the Bob lineage at Epsilon Eridani, then settles into observation and intervention around the Deltans on Eden.", "certainty": "high" },
+    { "bob_id": "bob-1", "book_index": 2, "system_id": "delta-eridani", "summary": "Continues as protector-observer of the Deltans while the wider Bobiverse grapples with the Others.", "certainty": "high" },
+    { "bob_id": "bob-1", "book_index": 3, "system_id": "delta-eridani", "summary": "Remains closely tied to the Deltan arc while larger Bob strategy focuses on survival against the Others.", "certainty": "medium" },
+    { "bob_id": "bob-1", "book_index": 4, "system_id": "eta-leporis", "summary": "Leads the search for missing Bender into Eta Leporis and the Heaven's River megastructure.", "certainty": "high" },
+    { "bob_id": "bob-1", "book_index": 5, "system_id": null, "summary": "Remains one of the senior early-generation Bobs in a Bobiverse split by factionalism, AI risk, and long-range mysteries.", "certainty": "medium" },
+
+    { "bob_id": "riker", "book_index": 1, "system_id": "sol", "summary": "Returns to ruined Earth, protects survivors, and becomes central to the human evacuation effort.", "certainty": "high" },
+    { "bob_id": "riker", "book_index": 2, "system_id": "sol", "summary": "Keeps building colony infrastructure, fights anti-evacuation extremism, and deepens ties with Julia Hendricks' family.", "certainty": "high" },
+    { "bob_id": "riker", "book_index": 3, "system_id": "omicron2-eridani", "summary": "Acts as a key defender during the Sol crisis with the Others and remains deeply entangled with the human colony sphere.", "certainty": "medium" },
+    { "bob_id": "riker", "book_index": 4, "system_id": "82-eridani", "summary": "Now usually going by Will, he lives more personally and locally around Valhalla while trying to protect his extended human family from anti-Bob politics.", "certainty": "high" },
+    { "bob_id": "riker", "book_index": 5, "system_id": null, "summary": "Continues exploring farther afield while still entangled in plans to safeguard descendants of Julia's family.", "certainty": "medium" },
+
+    { "bob_id": "bill", "book_index": 1, "system_id": "epsilon-eridani", "summary": "Builds the Skunk Works, develops infrastructure, and becomes the research anchor of the young Bobiverse.", "certainty": "high" },
+    { "bob_id": "bill", "book_index": 2, "system_id": "epsilon-eridani", "summary": "Coordinates technology and strategy from Epsilon Eridani as the Others threat becomes impossible to ignore.", "certainty": "high" },
+    { "bob_id": "bill", "book_index": 3, "system_id": "epsilon-eridani", "summary": "Helps drive the final anti-Others strategy and keeps expanding Bobiverse engineering capacity.", "certainty": "high" },
+    { "bob_id": "bill", "book_index": 4, "system_id": "epsilon-eridani", "summary": "Acts as senior organizer during internal Bob conflicts, Starfleet tensions, and the Bender/Quinlan era.", "certainty": "high" },
+    { "bob_id": "bill", "book_index": 5, "system_id": "epsilon-eridani", "summary": "Terraforms Ragnarok, solves wormhole engineering, and helps uncover Starfleet's origin while dealing with the Thoth fallout.", "certainty": "high" },
+
+    { "bob_id": "milo", "book_index": 1, "system_id": "82-eridani", "summary": "Scouts colony prospects, discovers Vulcan and Romulus, then is destroyed by Medeiros at 82 Eridani.", "certainty": "high" },
+
+    { "bob_id": "mario", "book_index": 1, "system_id": "beta-hydri", "summary": "Heads outward on a solitary scouting route and begins finding evidence that something far worse than human politics is out there.", "certainty": "high" },
+    { "bob_id": "mario", "book_index": 2, "system_id": "gliese-54", "summary": "Systematically investigates the Others' destruction trail and becomes the earliest Bob expert on their scale and methods.", "certainty": "high" },
+
+    { "bob_id": "homer", "book_index": 1, "system_id": "sol", "summary": "One of the original cohort; later psychologically compromised by hostile humans and tragically lost.", "certainty": "medium" },
+
+    { "bob_id": "garfield", "book_index": 1, "system_id": "epsilon-eridani", "summary": "Works closely with Bill on early technical projects, especially around SCUT and infrastructure development.", "certainty": "medium" },
+
+    { "bob_id": "bender", "book_index": 1, "system_id": null, "summary": "Departs Delta Eridani and vanishes from known Bob communications.", "certainty": "high" },
+    { "bob_id": "bender", "book_index": 4, "system_id": "heavens-river-megastructure", "summary": "Revealed to have been captured after following an anomalous signature into Eta Leporis and held within the Heaven's River setting.", "certainty": "high" },
+
+    { "bob_id": "howard", "book_index": 1, "system_id": "82-eridani", "summary": "Supports early human colony establishment.", "certainty": "medium" },
+    { "bob_id": "howard", "book_index": 2, "system_id": "82-eridani", "summary": "Works closely with colonists and falls in love with Bridget.", "certainty": "high" },
+    { "bob_id": "howard", "book_index": 3, "system_id": "hip-84051", "summary": "After Bridget's death and replication, Howard and Bridget become a couple despite public controversy.", "certainty": "high" },
+    { "bob_id": "howard", "book_index": 4, "system_id": "hip-84051", "summary": "With Bridget, pursues trade, family life, and cataloging projects; Bridget also joins the Heaven's River expedition orbit-side effort.", "certainty": "high" },
+
+    { "bob_id": "jacques", "book_index": 2, "system_id": "delta-pavonis", "summary": "Studies the Pav, tries to save them from the Others, and becomes central to their refugee storyline.", "certainty": "high" },
+    { "bob_id": "jacques", "book_index": 4, "system_id": "hip-84051", "summary": "Maintains guarded relations with the resettled Pav, many of whom remain suspicious of the Bobs' motives.", "certainty": "high" },
+
+    { "bob_id": "icarus", "book_index": 3, "system_id": "gliese-877", "summary": "Carries out the long-range mission that destroys the Others' home system.", "certainty": "high" },
+    { "bob_id": "icarus", "book_index": 5, "system_id": "sagittarius-a-region", "summary": "Explores deep galactic mysteries, wormhole infrastructure, and the larger civilizational context behind the Fermi paradox.", "certainty": "high" },
+
+    { "bob_id": "daedalus", "book_index": 3, "system_id": "gliese-877", "summary": "Carries out the long-range mission that destroys the Others' home system.", "certainty": "high" },
+    { "bob_id": "daedalus", "book_index": 5, "system_id": "sagittarius-a-region", "summary": "With Icarus, uncovers abandoned networks, automated guardians, and evidence of a larger galactic backstory.", "certainty": "high" }
+  ],
+  "open_questions_for_text_verification": [
+    "Exact generation and direct parent line for Jacques should still be checked in-text before drawing a hard genealogical edge in the family tree.",
+    "Some late-book year placements, especially book-5 chronology around Thoth and wormhole milestones, are strong summary anchors but should be text-checked before presenting day-accurate or month-accurate dates.",
+    "If the app later needs a truly exhaustive Bob family tree, a second pass should extract every named clone and parent-child link directly from the novels rather than relying on conservative summary curation."
+  ]
+}
